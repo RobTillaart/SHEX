@@ -55,17 +55,17 @@ unittest(test_all)
   shex.setHEX(false);
   assertFalse(shex.getHEX());
 
-  asserEqual(16, shex.getBytesPerLine());
+  assertEqual(16, shex.getBytesPerLine());
   shex.setBytesPerLine(60);
-  asserEqual(60, shex.getBytesPerLine());
+  assertEqual(60, shex.getBytesPerLine());
   shex.setBytesPerLine();
-  asserEqual(16, shex.getBytesPerLine());
+  assertEqual(16, shex.getBytesPerLine());
 
-  asserEqual(' ', shex.getSeparator());
+  assertEqual(' ', shex.getSeparator());
   shex.setSeparator('-');
-  asserEqual('-', shex.getSeparator());
+  assertEqual('-', shex.getSeparator());
   shex.setSeparator();
-  asserEqual(' ', shex.getSeparator());
+  assertEqual(' ', shex.getSeparator());
 
   assertTrue(shex.getCountFlag());
   shex.setCountFlag(false);
