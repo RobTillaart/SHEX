@@ -44,12 +44,13 @@ This makes it possible to switch between the modes e.g. between
 ### Modifiers
 
 - **void setHEX(bool hexOutput = true)** switch between modi, HEX (true) or passthrough (false).
+- **bool getHEX()** get modi set above.
 - **void setBytesPerLine(uint8_t len = 16)** idem, default 16 bytes per line, forced multiple of 4.
-- **uint8_t getBytesPerLine()** returns number of bytes per line
-- **void setSeparator(char c = ' ')** set the character
+- **uint8_t getBytesPerLine()** returns number of bytes per line.
+- **void setSeparator(char c = ' ')** set the character.
 - **char getSeparator()** return the character set.
-- **void    setCountFlag(bool flag = true)** show the character count at begin of every line.
-- **void    getCountFlag()** return flag set.
+- **void setCountFlag(bool flag = true)** show the character count at begin of every line.
+- **bool getCountFlag()** return flag set.
 
 
 ## Future

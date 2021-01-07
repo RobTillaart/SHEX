@@ -34,7 +34,7 @@ public:
   char    getSeparator() { return _separator; };
 
   void    setCountFlag(bool flag = true) { _countFlag = flag; };
-  void    getCountFlag() {return _countFlag; };
+  bool    getCountFlag() {return _countFlag; };
 
 private:
   Print *   _stream;
