@@ -18,7 +18,6 @@
 SHEX::SHEX(Print* stream, uint8_t len)
 {
   _stream    = stream;
-
   reset();
   // force multiple of 4; max 32
   _length    = min(32, ((len + 3) / 4) * 4);

@@ -12,7 +12,7 @@
 #include "Print.h"
 
 
-#define SHEX_LIB_VERSION = (F("0.2.0"))
+#define SHEX_LIB_VERSION      (F("0.2.0"))
 
 
 class SHEX: public Print

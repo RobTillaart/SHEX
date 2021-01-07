@@ -43,11 +43,36 @@ unittest_teardown()
 }
 
 
-unittest(test_constructor)
+unittest(test_all)
 {
-  fprintf(stderr, "VERSION: %s\n", );
+  fprintf(stderr, "VERSION: %s\n", SHEX_LIB_VERSION);
+
+  SHEX shex;
   
-  assertEqual(1, 1);
+  assertFalse(shex.getHEX());
+  shex.setHEX();
+  assertTrue(shex.getHEX());
+  shex.setHEX(false);
+  assertFalse(shex.getHEX());
+
+  asserEqual(16, shex.getBytesPerLine());
+  shex.setBytesPerLine(60);
+  asserEqual(60, shex.getBytesPerLine());
+  shex.setBytesPerLine();
+  asserEqual(16, shex.getBytesPerLine());
+
+  asserEqual(' ', shex.getSeparator());
+  shex.setSeparator('-');
+  asserEqual('-', shex.getSeparator());
+  shex.setSeparator();
+  asserEqual(' ', shex.getSeparator());
+
+  assertTrue(shex.getCountFlag());
+  shex.setCountFlag(false);
+  assertFalse(shex.getCountFlag());
+  shex.setCountFlag();
+  assertTrue(shex.getCountFlag());
+
 }
 
 unittest_main()
