@@ -1,8 +1,15 @@
+
+[![Arduino CI](https://github.com/RobTillaart/SHEX/workflows/Arduino%20CI/badge.svg)](https://github.com/marketplace/actions/arduino_ci)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobTillaart/SHEX/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/RobTillaart/SHEX.svg?maxAge=3600)](https://github.com/RobTillaart/SHEX/releases)
+
+
 # SHEX
 
-Arduino library to generate hex dump over Serial
+Arduino library to generate hex dump over Serial (any stream)
 
-# Description
+
+## Description
 
 SHEX is a simple library that wraps the Serial output side (by default) and
 generates an hexdump of all data that is printed. 16 bytes per row.
@@ -26,26 +33,41 @@ of **setHEX(bool)**.
 This makes it possible to switch between the modes e.g. between 
 'debugging' and 'release' mode.
 
-### ideas for the future
 
-Although no follow up release is really planned, some ideas are kept here
+## Interface
+
+### Constructor + Core
+
+- **SHEX(Print \* stream = &Serial, uint8_t len = 16)** Constructor, optional set the number of bytes per line.
+- **size_t write(uint8_t c)** implements the Print interface
+
+### Modifiers
+
+- **void setHEX(bool hexOutput = true)** switch between modi, HEX (true) or passthrough (false).
+- **void setBytesPerLine(uint8_t len = 16)** idem, default 16 bytes per line, forced multiple of 4.
+- **uint8_t getBytesPerLine()** returns number of bytes per line
+- **void setSeparator(char c = ' ')** set the character
+- **char getSeparator()** return the character set.
+- **void    setCountFlag(bool flag = true)** show the character count at begin of every line.
+- **void    getCountFlag()** return flag set.
+
+
+## Future
+
+Although no follow up release is planned, some ideas are kept here
 so they won't get lost.
 
 - Optional ASCII colomn in the output format ( . if not printable) e.g.
 ```
 0xABCDABCD  xx xx xx xx xx xx xx xx xx    c.cc c..c
 ```
-
-- bytes per line: runtime configurable
-
+needs line buffering
 - seperarator: runtime configurable; 
-
 - headerline: runtime configurable; optional combined with separator
-
 - HEX reader: converts dump format to a normal stream again.
-
 - better name for the class?
 
-# Operational
+
+## Operational
 
 See examples
