@@ -25,7 +25,7 @@ public:
   size_t  write(uint8_t c);
 
   void    setHEX(bool hexOutput = true);
-  bool    getHex() { return _hexOutput; };
+  bool    getHEX() { return _hexOutput; };
 
   void    setBytesPerLine(const uint8_t len = 16);
   uint8_t getBytesPerLine() { return _length; };
