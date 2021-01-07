@@ -57,7 +57,7 @@ unittest(test_all)
 
   assertEqual(16, shex.getBytesPerLine());
   shex.setBytesPerLine(60);
-  assertEqual(60, shex.getBytesPerLine());
+  assertEqual(32, shex.getBytesPerLine());
   shex.setBytesPerLine();
   assertEqual(16, shex.getBytesPerLine());
 
