@@ -28,7 +28,7 @@ void loop()
   if (Serial.available())
   {
     char c = Serial.read();
-	shex.print(c);
+    shex.print(c);
   }
 }
 
