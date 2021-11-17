@@ -26,11 +26,13 @@ The default output format is
 ```
 with a separator line after each 8th line.
 
-The constructor has a length parameter which can be used to have another number of bytes per row. 
-After construction this cannot be changed, at least not in the initial release. 
+The constructor has a length parameter which can be used to have another number of bytes per row.
+This can be changed with **setBytesPerLine()**.
 
-The only thing one can toggle is HEX output or pass through by means of **setHEX(bool)**.
+One can toggle is HEX output or pass through by means of **setHEX(bool)**.
 This makes it possible to switch between the modes e.g. between 'debugging' and 'release' mode.
+
+One can toggle the character count at the start of the line.
 
 
 ## Interface
@@ -39,6 +41,7 @@ This makes it possible to switch between the modes e.g. between 'debugging' and 
 ### Constructor + Core
 
 - **SHEX(Print \* stream = &Serial, uint8_t length = 16)** Constructor, optional set the number of bytes per line.
+default 16 bytes per line, forced multiple of 4, max 32.
 - **size_t write(uint8_t c)** implements the Print interface.
 
 
@@ -46,7 +49,7 @@ This makes it possible to switch between the modes e.g. between 'debugging' and 
 
 - **void setHEX(bool hexOutput = true)** switch between modi, HEX (true) or pass through (false).
 - **bool getHEX()** returns mode set above.
-- **void setBytesPerLine(uint8_t length = 16)** idem, default 16 bytes per line, forced multiple of 4.
+- **void setBytesPerLine(uint8_t length = 16)** idem, default 16 bytes per line, forced multiple of 4, max 32.
 - **uint8_t getBytesPerLine()** returns number of bytes per line.
 - **void setSeparator(char c = ' ')** set the separator character, default a space.
 Some people like a dot '.', or a tab '\t'. Feel free to experiment.
@@ -77,4 +80,6 @@ needs a line buffer to do that (double loop)
   header(str, lines); ???
 - HEX reader: converts dump format to a normal stream again.
 - better name for the class? - streamHex
+= showByteCount(bool) is a better name.
+
 
