@@ -10,6 +10,7 @@
 // this sketch echos all incoming bytes back in hex dump format.
 // 
 
+
 #include "SHEX.h"
 
 // default Serial and length 16
@@ -17,11 +18,13 @@ SHEX shex;
 
 // SHEX shex(&Serial, 8);
 
+
 void setup()
 {
   Serial.begin(115200);
   Serial.println(__FILE__);
 }
+
 
 void loop()
 {
@@ -32,4 +35,6 @@ void loop()
   }
 }
 
+
 // -- END OF FILE --
+

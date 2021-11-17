@@ -18,7 +18,7 @@
 class SHEX: public Print
 {
 public:
-  SHEX(Print* stream = &Serial, uint8_t len = 16);
+  SHEX(Print* stream = &Serial, uint8_t length = 16);
 
   void    reset();
 
@@ -27,7 +27,7 @@ public:
   void    setHEX(bool hexOutput = true);
   bool    getHEX() { return _hexOutput; };
 
-  void    setBytesPerLine(const uint8_t len = 16);
+  void    setBytesPerLine(const uint8_t length = 16);
   uint8_t getBytesPerLine() { return _length; };
 
   void    setSeparator(char c = ' ') { _separator = c; };
@@ -45,4 +45,6 @@ private:
   char      _separator = ' ';
 };
 
+
 // -- END OF FILE --
+

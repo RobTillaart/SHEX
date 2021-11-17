@@ -45,7 +45,7 @@ unittest_teardown()
 
 unittest(test_all)
 {
-  fprintf(stderr, "VERSION: %s\n", SHEX_LIB_VERSION);
+  fprintf(stderr, "VERSION: %s\n", (char *) SHEX_LIB_VERSION);
 
   SHEX shex;
   
@@ -74,6 +74,7 @@ unittest(test_all)
   assertTrue(shex.getCountFlag());
 
 }
+
 
 unittest_main()
 
