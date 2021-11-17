@@ -48,15 +48,16 @@ This makes it possible to switch between the modes e.g. between 'debugging' and 
 - **bool getHEX()** returns mode set above.
 - **void setBytesPerLine(uint8_t length = 16)** idem, default 16 bytes per line, forced multiple of 4.
 - **uint8_t getBytesPerLine()** returns number of bytes per line.
-- **void setSeparator(char c = ' ')** set the character.
-- **char getSeparator()** return the character set.
+- **void setSeparator(char c = ' ')** set the separator character, default a space.
+Some people like a dot '.', or a tab '\t'. Feel free to experiment.
+- **char getSeparator()** return the separator character set.
 - **void setCountFlag(bool flag = true)** show the character count at begin of every line.
 - **bool getCountFlag()** return flag set.
 
 
 ## Operational
 
-See examples
+See examples.
 
 
 ## Future
