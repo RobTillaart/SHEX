@@ -15,12 +15,13 @@
 #include "SHEX.h"
 
 
-SHEX::SHEX(Print* stream, uint8_t len)
+SHEX::SHEX(Print* stream, uint8_t length)
 {
-  _stream    = stream;
+  _stream  = stream;
   reset();
   // force multiple of 4; max 32
-  _length    = min(32, ((len + 3) / 4) * 4);
+  _length = ((length + 3) / 4) * 4;
+  if (_length > 32) _length = 32;
 };
 
 
@@ -87,13 +88,15 @@ void SHEX::setHEX(bool hexOutput)
 };
 
 
-void SHEX::setBytesPerLine(const uint8_t len)
+void SHEX::setBytesPerLine(const uint8_t length)
 {
-  _length = min(32, ((len + 3) / 4) * 4);  // force multiple of 4; 
+  // force multiple of 4; max 32
+  _length = ((length + 3) / 4) * 4;
+  if (_length > 32) _length = 32;
   _charCount = 0;
   _stream->println();
 }
 
 
-
 // -- END OF FILE --
+

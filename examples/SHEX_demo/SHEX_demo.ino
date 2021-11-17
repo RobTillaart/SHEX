@@ -7,7 +7,9 @@
 //    (c) : MIT
 //
 
+
 #include "SHEX.h"
+
 
 void setup()
 {
@@ -47,8 +49,11 @@ void setup()
   Serial.println("\n Done...\n");
 }
 
+
 void loop()
 {
 }
 
+
 // -- END OF FILE --
+
