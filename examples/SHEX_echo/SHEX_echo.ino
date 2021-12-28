@@ -1,13 +1,10 @@
 //
 //    FILE: SHEX_echo.ino
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.1.0
-// PURPOSE: demo SHEX hexdump class
+// PURPOSE: demo SHEX hex dump class
 //    DATE: 2020-05-24
-//    (c) : MIT
 //
-
-// this sketch echos all incoming bytes back in hex dump format.
+// this sketch echoes all incoming bytes back in hex dump format.
 // 
 
 

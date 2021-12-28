@@ -2,7 +2,7 @@
 //
 //    FILE: SHEX.h
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.2.0
+// VERSION: 0.2.1
 // PURPOSE: Arduino library to generate hex dump over Serial
 //    DATE: 2020-05-24
 //     URL: https://github.com/RobTillaart/SHEX
@@ -12,7 +12,7 @@
 #include "Print.h"
 
 
-#define SHEX_LIB_VERSION      (F("0.2.0"))
+#define SHEX_LIB_VERSION                (F("0.2.1"))
 
 
 class SHEX: public Print
@@ -35,6 +35,7 @@ public:
 
   void    setCountFlag(bool flag = true) { _countFlag = flag; };
   bool    getCountFlag() {return _countFlag; };
+
 
 private:
   Print *   _stream;

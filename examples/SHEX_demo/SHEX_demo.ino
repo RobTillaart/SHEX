@@ -1,11 +1,8 @@
 //
 //    FILE: SHEX_demo.ino
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.2.0
-// PURPOSE: demo SHEX hexdump class
+// PURPOSE: demo SHEX hex dump class
 //    DATE: 2020-05-24
-//    (c) : MIT
-//
 
 
 #include "SHEX.h"
