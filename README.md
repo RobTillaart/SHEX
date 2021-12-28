@@ -80,6 +80,6 @@ needs a line buffer to do that (double loop)
   header(str, lines); ???
 - HEX reader: converts dump format to a normal stream again.
 - better name for the class? - streamHex
-= showByteCount(bool) is a better name.
+- showByteCount(bool) is a better name.
 
 
