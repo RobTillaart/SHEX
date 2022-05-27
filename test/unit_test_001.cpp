@@ -45,33 +45,84 @@ unittest_teardown()
 }
 
 
-unittest(test_all)
+unittest(test_constants)
+{
+  assertEqual(16, SHEX_DEFAULT_LENGTH);
+  assertEqual(32, SHEX_MAX_LENGTH);
+  assertEqual(04, SHEX_MIN_LENGTH);
+  assertEqual(04, SHEX_COUNTER_DIGITS);
+
+}
+
+
+unittest(test_set_hex)
 {
   SHEX shex;
-  
+
   assertTrue(shex.getHEX());
+
   shex.setHEX(false);
   assertFalse(shex.getHEX());
+
   shex.setHEX();
   assertTrue(shex.getHEX());
+}
 
-  assertEqual(16, shex.getBytesPerLine());
+
+unittest(test_bytes_per_line)
+{
+  SHEX shex(&Serial, 24);
+
+  assertEqual(24, shex.getBytesPerLine());
+
+  shex.setBytesPerLine(8);
+  assertEqual(8, shex.getBytesPerLine());
+
   shex.setBytesPerLine(60);
   assertEqual(32, shex.getBytesPerLine());
+
   shex.setBytesPerLine();
-  assertEqual(16, shex.getBytesPerLine());
+  assertEqual(SHEX_DEFAULT_LENGTH, shex.getBytesPerLine());
+}
+
+
+unittest(test_separator)
+{
+  SHEX shex;
 
   assertEqual(' ', shex.getSeparator());
+
   shex.setSeparator('-');
   assertEqual('-', shex.getSeparator());
+
   shex.setSeparator();
   assertEqual(' ', shex.getSeparator());
+}
 
-  assertTrue(shex.getCountFlag());
-  shex.setCountFlag(false);
-  assertFalse(shex.getCountFlag());
-  shex.setCountFlag();
-  assertTrue(shex.getCountFlag());
+
+unittest(test_count_digits)
+{
+  SHEX shex;
+
+  assertEqual(SHEX_COUNTER_DIGITS, shex.getCountDigits());
+
+  setCountDigits(0);
+  assertEqual(0, shex.getCountDigits());
+
+  setCountDigits(1);
+  assertEqual(4, shex.getCountDigits());
+
+  setCountDigits(4);
+  assertEqual(4, shex.getCountDigits());
+
+  setCountDigits(6);
+  assertEqual(6, shex.getCountDigits());
+
+  setCountDigits(8);
+  assertEqual(8, shex.getCountDigits());
+
+  setCountDigits(9);
+  assertEqual(8, shex.getCountDigits());
 }
 
 
