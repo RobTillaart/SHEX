@@ -11,7 +11,8 @@
 //  0.1.1   2020-06-19  fix library.json
 //  0.2.0   2021-01-07  Arduino-CI + unit tests + modifiers.
 //  0.2.1   2021-12-28  update library.json, readme, license, minor edits
-//  0.2.2   2022-05-27  fix #6 bring reset in sync with constructor
+//  0.2.2   2022-05-27  fix #6 set default length
+//                      add defines SHEX_DEFAULT_LENGTH + SHEX_MAX_LENGTH
 
 
 #include "SHEX.h"
