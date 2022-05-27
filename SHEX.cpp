@@ -60,7 +60,7 @@ size_t SHEX::write(uint8_t c)
   // handle end of line and position number
   if ((_charCount % _length) == 0)
   {
-    // insert ascii array here
+    // insert ASCII array here
     
     _stream->println();
     // separator line every 8 lines
@@ -130,6 +130,66 @@ void SHEX::setCountDigits(uint8_t digits)
   if (_digits < 4) _digits = 4;
   if (_digits > 8) _digits = 8;
 };
+
+
+///////////////////////////////////////////////////
+//
+//  SHEXA
+//
+SHEXA::SHEXA(Print* stream, uint8_t length) : SHEX(stream, length)
+{
+}
+
+
+size_t SHEXA::write(uint8_t c)
+{
+  // PASS THROUGH MODE
+  if (_hexOutput == false) return _stream->write(c);
+
+  //  HEX MODE
+  //  handle end of line and position number
+  if ((_charCount % _length) == 0)
+  {
+    //  insert ASCII array here
+    _stream->write(_txtbuf, _length);
+    
+    _stream->println();
+    //  separator line every 8 lines
+    if ((_charCount % (_length * 8)) == 0)
+    {
+      _stream->println();
+    }
+
+    //  next line
+    if (_digits > 0)
+    {
+      uint32_t mask = 0xF000;
+      if (_digits > 4) mask = 0xF00000;
+      if (_digits > 6) mask = 0xF0000000;
+      while((mask > 0xF) && (mask & _charCount) == 0)
+      {
+        _stream->print('0');
+        mask >>= 4;
+      }
+      _stream->print(_charCount, HEX);
+      _stream->print('\t');
+    }
+  }
+
+  //  Print char as HEX
+  if (c < 0x10) _stream->print('0');
+  _stream->print(c, HEX);
+  _stream->print(_separator);
+
+  //  Store in _txtbuf
+  _txtbuf[_charCount % _length] = isPrintable(c) ? c : '.';
+
+  _charCount++;
+  if ((_charCount % 4) == 0) _stream->print(_separator);
+
+  return 1;
+}
+
 
 
 // -- END OF FILE --

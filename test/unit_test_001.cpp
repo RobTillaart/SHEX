@@ -106,22 +106,22 @@ unittest(test_count_digits)
 
   assertEqual(SHEX_COUNTER_DIGITS, shex.getCountDigits());
 
-  setCountDigits(0);
+  shex.setCountDigits(0);
   assertEqual(0, shex.getCountDigits());
 
-  setCountDigits(1);
+  shex.setCountDigits(1);
   assertEqual(4, shex.getCountDigits());
 
-  setCountDigits(4);
+  shex.setCountDigits(4);
   assertEqual(4, shex.getCountDigits());
 
-  setCountDigits(6);
+  shex.setCountDigits(6);
   assertEqual(6, shex.getCountDigits());
 
-  setCountDigits(8);
+  shex.setCountDigits(8);
   assertEqual(8, shex.getCountDigits());
 
-  setCountDigits(9);
+  shex.setCountDigits(9);
   assertEqual(8, shex.getCountDigits());
 }
 

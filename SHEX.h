@@ -42,7 +42,7 @@ public:
   uint8_t getCountDigits() { return _digits; }
 
 
-private:
+protected:
   Print *   _stream    = &Serial;
   bool      _hexOutput = true;
   uint8_t   _length    = SHEX_DEFAULT_LENGTH;
@@ -50,6 +50,24 @@ private:
 
   uint32_t  _charCount = 0;
   uint32_t  _digits    = SHEX_COUNTER_DIGITS;
+};
+
+
+///////////////////////////////////////////////////
+//
+//  SHEXA shows also ASCII dump
+//        derived class as it takes extra RAM
+//
+class SHEXA : public SHEX
+{
+public:
+  SHEXA(Print* stream = &Serial, uint8_t length = SHEX_DEFAULT_LENGTH);
+
+  size_t    write(uint8_t c);
+
+protected:
+  uint8_t   _txtbuf[SHEX_MAX_LENGTH];
+  bool      _showtxt = true;
 };
 
 

@@ -25,7 +25,7 @@ void setup()
 
 
   Serial.println("\n\nSHEX\n");
-  SHEX shex(&Serial, 16);
+  SHEXA shex(&Serial, 16);
   shex.setCountDigits(6);
 
   for (int i = 0; i < 300; i++)
