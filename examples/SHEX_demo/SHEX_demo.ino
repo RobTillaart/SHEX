@@ -12,6 +12,8 @@ void setup()
 {
   Serial.begin(115200);
   Serial.println(__FILE__);
+  Serial.print("SHEX_LIB_VERSION: ");
+  Serial.println(SHEX_LIB_VERSION);
 
   Serial.println("\nNORMAL\n");
   for (int i = 0; i < 64; i++)
@@ -24,6 +26,7 @@ void setup()
 
   Serial.println("\n\nSHEX\n");
   SHEX shex(&Serial, 16);
+  shex.setCountDigits(5);
 
   for (int i = 0; i < 300; i++)
   {
@@ -53,4 +56,3 @@ void loop()
 
 
 // -- END OF FILE --
-

@@ -1,7 +1,7 @@
 //
 //    FILE: SHEX.cpp
 //  AUTHOR: Rob Tillaart
-// VERSION: 0.2.2
+// VERSION: 0.3.0
 // PURPOSE: Arduino library to generate hex dump over Serial
 //    DATE: 2020-05-24
 //     URL: https://github.com/RobTillaart/SHEX
@@ -13,6 +13,8 @@
 //  0.2.1   2021-12-28  update library.json, readme, license, minor edits
 //  0.2.2   2022-05-27  fix #6 set default length
 //                      add defines SHEX_DEFAULT_LENGTH + SHEX_MAX_LENGTH
+//  0.3.0   2022-05-27  default HEX output instead of pass through.
+//                      add setCountDigits() => #digits of count 4, 6 or 8 (4 = default)
 
 
 #include "SHEX.h"
@@ -33,7 +35,7 @@ SHEX::SHEX(Print* stream, uint8_t length)
 
 void SHEX::reset()
 {
-  _hexOutput = false;
+  _hexOutput = true;
   _length    = SHEX_DEFAULT_LENGTH;
   _charCount = 0;
   _separator = ' ';
@@ -54,6 +56,8 @@ size_t SHEX::write(uint8_t c)
   // handle end of line and position number
   if ((_charCount % _length) == 0)
   {
+    // insert ascii array here
+    
     _stream->println();
     // separator line every 8 lines
     if ((_charCount % (_length * 8)) == 0)
@@ -64,7 +68,9 @@ size_t SHEX::write(uint8_t c)
     // next line
     if (_countFlag)
     {
-      uint32_t mask = 0xF0000000;
+      uint32_t mask = 0xF000;
+      if (_digits > 4) mask = 0xF00000;
+      else if (_digits > 6) mask = 0xF0000000;
       while((mask > 0xF) && (mask & _charCount) == 0)
       {
         _stream->print('0');
@@ -108,6 +114,13 @@ void SHEX::setBytesPerLine(const uint8_t length)
   _stream->println();
 }
 
+
+void SHEX::setCountDigits(uint8_t digits) 
+{
+  _digits = digits;
+  if (_digits < 4) _digits = 4;
+  if (_digits > 8) _digits = 8;
+};
 
 // -- END OF FILE --
 

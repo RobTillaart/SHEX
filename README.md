@@ -63,6 +63,8 @@ Some people like a dot '.', or a tab '\t'. Feel free to experiment.
 - **char getSeparator()** return the separator character set.
 - **void setCountFlag(bool flag = true)** show the character count at begin of every line.
 - **bool getCountFlag()** return flag set.
+- **void setCountDigits(uint8_t digits)** set the length of the counter, 8 or 6 or 4 (default). Other numbers will be rounded up to 4, 6 or 8.
+- **uint8_t getCountDigits()** returns idem.
 
 
 ## Operational
@@ -88,6 +90,11 @@ needs a line buffer to do that (double loop)
   **header(str, lines)**; ???
 - HEX reader: converts dump format to a normal stream again.
 - better name for the class? - streamHex
+
+### byte counter related
+
 - **showByteCount(bool)** is a better name than **setCountFlag()**
+
+if #digits == 0 no count is shown. could make the model simpler.
 
 

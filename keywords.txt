@@ -16,6 +16,8 @@ setSeparator	KEYWORD2
 getSeparator	KEYWORD2
 setCountFlag	KEYWORD2
 getCountFlag	KEYWORD2
+setCountDigits	KEYWORD2
+getCountDigits	KEYWORD2
 
 
 # Constants (LITERAL1)
