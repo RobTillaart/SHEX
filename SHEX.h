@@ -16,6 +16,7 @@
 
 #define SHEX_DEFAULT_LENGTH             16
 #define SHEX_MAX_LENGTH                 32
+#define SHEX_MIN_LENGTH                 4
 #define SHEX_COUNTER_DIGITS             4
 
 class SHEX: public Print
@@ -36,12 +37,10 @@ public:
   void    setSeparator(char c = ' ') { _separator = c; };
   char    getSeparator() { return _separator; };
 
-  void    setCountFlag(bool flag = true) { _countFlag = flag; };
-  bool    getCountFlag() { return _countFlag; };
-
-  //      must be 4-8
-  void    setCountDigits(uint8_t digits);
+  //      must be 0, 4, 6 or 8
+  void    setCountDigits(uint8_t digits = SHEX_COUNTER_DIGITS);
   uint8_t getCountDigits() { return _digits; }
+
 
 private:
   Print *   _stream    = &Serial;
@@ -49,9 +48,8 @@ private:
   uint8_t   _length    = SHEX_DEFAULT_LENGTH;
   char      _separator = ' ';
 
-  bool      _countFlag = true;
   uint32_t  _charCount = 0;
-  uint32_t  _digits    = 4;
+  uint32_t  _digits    = SHEX_COUNTER_DIGITS;
 };
 
 

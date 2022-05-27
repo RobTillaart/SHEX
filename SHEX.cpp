@@ -30,6 +30,10 @@ SHEX::SHEX(Print* stream, uint8_t length)
   {
     _length = SHEX_MAX_LENGTH;
   }
+  if (_length < SHEX_MIN_LENGTH)
+  {
+    _length = SHEX_MIN_LENGTH;
+  }
 };
 
 
@@ -39,7 +43,7 @@ void SHEX::reset()
   _length    = SHEX_DEFAULT_LENGTH;
   _charCount = 0;
   _separator = ' ';
-  _countFlag = true;
+  _digits    = SHEX_COUNTER_DIGITS;
 }
 
 
@@ -66,11 +70,11 @@ size_t SHEX::write(uint8_t c)
     }
 
     // next line
-    if (_countFlag)
+    if (_digits > 0)
     {
       uint32_t mask = 0xF000;
       if (_digits > 4) mask = 0xF00000;
-      else if (_digits > 6) mask = 0xF0000000;
+      if (_digits > 6) mask = 0xF0000000;
       while((mask > 0xF) && (mask & _charCount) == 0)
       {
         _stream->print('0');
@@ -109,6 +113,10 @@ void SHEX::setBytesPerLine(const uint8_t length)
   {
     _length = SHEX_MAX_LENGTH;
   }
+  if (_length < SHEX_MIN_LENGTH)
+  {
+    _length = SHEX_MIN_LENGTH;
+  }
   _charCount = 0;
   //  prevent change in middle of line
   _stream->println();
@@ -118,9 +126,11 @@ void SHEX::setBytesPerLine(const uint8_t length)
 void SHEX::setCountDigits(uint8_t digits) 
 {
   _digits = digits;
+  if (_digits == 0) return;
   if (_digits < 4) _digits = 4;
   if (_digits > 8) _digits = 8;
 };
+
 
 // -- END OF FILE --
 

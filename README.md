@@ -79,22 +79,26 @@ so they won't get lost.
 
 - Optional ASCII column in the output format ( . if not printable) e.g.
 ```
-        0xABCDABCD  xx xx xx xx xx xx xx xx xx    c.cc c..c
+        0xABCDABCD  xx xx xx xx  xx xx xx xx    c.cc c..c
 ```
-needs a line buffer to do that (double loop)
-
+needs a line buffer **uint8_t buffer[SHEX_MAX_LENGTH]** bytes to do that (double loop?).
+Or should it only be in a derived class **SHEXA**.
 - line buffering for faster output (e.g Ethernet and SD card)
   could it support **write(array, length)** call ?
-- header line: runtime configurable; optional combined with separator
+  Also needs a big buffer, maybe even 100 bytes.
+- header line: runtime configurable; 
+  optional combined with separator
   and after how many lines the header should repeat)
-  **header(str, lines)**; ???
-- HEX reader: converts dump format to a normal stream again.
-- better name for the class? - streamHex
+  **header(str, lines)** ?
+- HEX reader: **RHEX** converts dump format to a normal stream again.
+- better name for the class? - streamHex, HEXstream
+
 
 ### byte counter related
 
 - **showByteCount(bool)** is a better name than **setCountFlag()**
 
-if #digits == 0 no count is shown. could make the model simpler.
+if **setCountDigits(0)** no count is shown. 
+Could make the interface simpler.
 
 

@@ -26,7 +26,7 @@ void setup()
 
   Serial.println("\n\nSHEX\n");
   SHEX shex(&Serial, 16);
-  shex.setCountDigits(5);
+  shex.setCountDigits(6);
 
   for (int i = 0; i < 300; i++)
   {
@@ -38,7 +38,7 @@ void setup()
   Serial.println("\n\nSHEX modified\n");
   shex.setBytesPerLine(60);
   shex.setSeparator('-');
-  shex.setCountFlag(false);
+  shex.setCountDigits(0);
 
   for (int i = 0; i < 600; i++)
   {

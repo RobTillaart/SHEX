@@ -49,11 +49,11 @@ unittest(test_all)
 {
   SHEX shex;
   
-  assertFalse(shex.getHEX());
-  shex.setHEX();
   assertTrue(shex.getHEX());
   shex.setHEX(false);
   assertFalse(shex.getHEX());
+  shex.setHEX();
+  assertTrue(shex.getHEX());
 
   assertEqual(16, shex.getBytesPerLine());
   shex.setBytesPerLine(60);
