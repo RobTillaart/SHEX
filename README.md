@@ -61,10 +61,10 @@ default 16 bytes per line, forced multiple of 4, max SHEX_MAX_LENGTH = 32.
 - **void setSeparator(char c = ' ')** set the separator character, default a space.
 Some people like a dot '.', or a tab '\t'. Feel free to experiment.
 - **char getSeparator()** return the separator character set.
-- **void setCountFlag(bool flag = true)** show the character count at begin of every line.
-- **bool getCountFlag()** return flag set.
 - **void setCountDigits(uint8_t digits)** set the length of the counter, 8 or 6 or 4 (default). Other numbers will be rounded up to 4, 6 or 8.
 - **uint8_t getCountDigits()** returns idem.
+- **void setVTAB(uint8_t vtab = SHEX_DEFAULT_VTAB)** set the vertical separator line. 
+- **uint8_t getVTAB()** return the current vertical separator line.
 
 
 ## Operational
@@ -91,14 +91,3 @@ Or should it only be in a derived class **SHEXA**.
   and after how many lines the header should repeat)
   **header(str, lines)** ?
 - HEX reader: **RHEX** converts dump format to a normal stream again.
-- better name for the class? - streamHex, HEXstream
-
-
-### byte counter related
-
-- **showByteCount(bool)** is a better name than **setCountFlag()**
-
-if **setCountDigits(0)** no count is shown. 
-Could make the interface simpler.
-
-

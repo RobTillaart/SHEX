@@ -18,6 +18,8 @@
 #define SHEX_MAX_LENGTH                 32
 #define SHEX_MIN_LENGTH                 4
 #define SHEX_COUNTER_DIGITS             4
+#define SHEX_DEFAULT_VTAB               8
+
 
 class SHEX: public Print
 {
@@ -46,6 +48,7 @@ protected:
   Print *   _stream    = &Serial;
   bool      _hexOutput = true;
   uint8_t   _length    = SHEX_DEFAULT_LENGTH;
+  uint8_t   _vtab      = SHEX_DEFAULT_VTAB;
   char      _separator = ' ';
 
   uint32_t  _charCount = 0;

@@ -49,9 +49,9 @@ unittest(test_constants)
 {
   assertEqual(16, SHEX_DEFAULT_LENGTH);
   assertEqual(32, SHEX_MAX_LENGTH);
-  assertEqual(04, SHEX_MIN_LENGTH);
-  assertEqual(04, SHEX_COUNTER_DIGITS);
-
+  assertEqual(4, SHEX_MIN_LENGTH);
+  assertEqual(4, SHEX_COUNTER_DIGITS);
+  assertEqual(8, SHEX_DEFAULT_VTAB);
 }
 
 
@@ -123,6 +123,20 @@ unittest(test_count_digits)
 
   shex.setCountDigits(9);
   assertEqual(8, shex.getCountDigits());
+}
+
+
+unittest(test_vtab)
+{
+  SHEX shex;
+
+  assertEqual(8, shex.getVTAB());
+
+  for (uint8_t vtab = 1; vtab < 9; vtab *= 2 )
+  {
+    shex.setVTAB(vtab);
+    assertEqual(vtab, shex.getVTAB());
+  }
 }
 
 

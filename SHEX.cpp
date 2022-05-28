@@ -13,8 +13,11 @@
 //  0.2.1   2021-12-28  update library.json, readme, license, minor edits
 //  0.2.2   2022-05-27  fix #6 set default length
 //                      add defines SHEX_DEFAULT_LENGTH + SHEX_MAX_LENGTH
+//  0.2.3   2022-5-28   add setVTAB(vtab) getVTAB()
+//                      add define SHEX_DEFAULT_VTAB
 //  0.3.0   2022-05-27  default HEX output instead of pass through.
 //                      add setCountDigits() => #digits of count 4, 6 or 8 (4 = default)
+//                      add define SHEX_COUNTER_DIGITS + SHEX_MIN_LENGTH
 
 
 #include "SHEX.h"
@@ -44,6 +47,7 @@ void SHEX::reset()
   _charCount = 0;
   _separator = ' ';
   _digits    = SHEX_COUNTER_DIGITS;
+  _vtab      = SHEX_DEFAULT_VTAB;
 }
 
 
@@ -53,23 +57,23 @@ void SHEX::reset()
 //
 size_t SHEX::write(uint8_t c)
 {
-  // PASS THROUGH MODE
+  //  PASS THROUGH MODE
   if (_hexOutput == false) return _stream->write(c);
 
-  // HEX MODE
-  // handle end of line and position number
+  //  HEX MODE
+  //  handle end of line and position number
   if ((_charCount % _length) == 0)
   {
-    // insert ASCII array here
+    //  insert ASCII array here
     
     _stream->println();
-    // separator line every 8 lines
-    if ((_charCount % (_length * 8)) == 0)
+    //  separator line every _vtab (default 8) lines
+    if ((_charCount % (_length * _vtab)) == 0)
     {
       _stream->println();
     }
 
-    // next line
+    //  next line
     if (_digits > 0)
     {
       uint32_t mask = 0xF000;
@@ -85,7 +89,7 @@ size_t SHEX::write(uint8_t c)
     }
   }
 
-  // Print char as HEX
+  //  Print char as HEX
   if (c < 0x10) _stream->print('0');
   _stream->print(c, HEX);
   _stream->print(_separator);
@@ -123,6 +127,15 @@ void SHEX::setBytesPerLine(const uint8_t length)
 }
 
 
+void SHEX::setVTAB(uint8_t vtab)
+{
+  _vtab = vtab;
+  _charCount = 0;
+  //  prevent change in middle of line
+  _stream->println();
+};
+
+
 void SHEX::setCountDigits(uint8_t digits) 
 {
   _digits = digits;
@@ -154,8 +167,8 @@ size_t SHEXA::write(uint8_t c)
     _stream->write(_txtbuf, _length);
     
     _stream->println();
-    //  separator line every 8 lines
-    if ((_charCount % (_length * 8)) == 0)
+    //  separator line every _vtab (default 8) lines
+    if ((_charCount % (_length * _vtab)) == 0)
     {
       _stream->println();
     }
@@ -189,7 +202,6 @@ size_t SHEXA::write(uint8_t c)
 
   return 1;
 }
-
 
 
 // -- END OF FILE --
