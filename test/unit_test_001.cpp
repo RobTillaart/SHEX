@@ -49,8 +49,8 @@ unittest(test_constants)
 {
   assertEqual(16, SHEX_DEFAULT_LENGTH);
   assertEqual(32, SHEX_MAX_LENGTH);
-  assertEqual(04, SHEX_MIN_LENGTH);
-  assertEqual(08, SHEX_DEFAULT_VTAB);
+  assertEqual(4, SHEX_MIN_LENGTH);
+  assertEqual(8, SHEX_DEFAULT_VTAB);
 }
 
 
