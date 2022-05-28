@@ -106,21 +106,13 @@ unittest(test_count_digits)
 
   assertEqual(SHEX_COUNTER_DIGITS, shex.getCountDigits());
 
-  shex.setCountDigits(0);
-  assertEqual(0, shex.getCountDigits());
+  for (uint8_t digit = 0; digit < 9; digit++)
+  {
+    shex.setCountDigits(digit);
+    assertEqual(digit, shex.getCountDigits());
+  }
 
-  shex.setCountDigits(1);
-  assertEqual(4, shex.getCountDigits());
-
-  shex.setCountDigits(4);
-  assertEqual(4, shex.getCountDigits());
-
-  shex.setCountDigits(6);
-  assertEqual(6, shex.getCountDigits());
-
-  shex.setCountDigits(8);
-  assertEqual(8, shex.getCountDigits());
-
+  //  should be truncated to 8 == uint32_t counter)
   shex.setCountDigits(9);
   assertEqual(8, shex.getCountDigits());
 }

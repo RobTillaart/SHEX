@@ -13,16 +13,18 @@ Arduino library to generate hex dump over Serial (any stream).
 
 ## Description
 
+### SHEX
+
 SHEX is a simple library that wraps the Serial output side (by default) and
 generates an hex dump of all data that is printed. 16 bytes per row.
 
 The default output format is 
 ```
-0xABCDABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
-0xABCDABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
-0xABCDABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
+ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
+ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
+ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
 
-0xABCDABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx 
+ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx 
 ```
 with a separator line after each 8th line.
 
@@ -33,6 +35,11 @@ One can toggle is HEX output or pass through by means of **setHEX(bool)**.
 This makes it possible to switch between the modes e.g. between 'debugging' and 'release' mode.
 
 One can toggle the character count at the start of the line.
+
+
+### SHEXA
+
+TODO
 
 
 ## Interface
@@ -47,7 +54,8 @@ To be adjusted via command line (or in SHEX.h file)
 
 ### Constructor + Core
 
-- **SHEX(Print \* stream = &Serial, uint8_t length = SHEX_DEFAULT_LENGTH)** Constructor, optional set the number of bytes per line.
+- **SHEX(Print \* stream = &Serial, uint8_t length = SHEX_DEFAULT_LENGTH)** Constructor, 
+optional set the number of bytes per line.
 default 16 bytes per line, forced multiple of 4, max SHEX_MAX_LENGTH = 32.
 - **size_t write(uint8_t c)** implements the Print interface.
 
@@ -56,12 +64,14 @@ default 16 bytes per line, forced multiple of 4, max SHEX_MAX_LENGTH = 32.
 
 - **void setHEX(bool hexOutput = true)** switch between modi, HEX (true) or pass through (false).
 - **bool getHEX()** returns mode set above.
-- **void setBytesPerLine(uint8_t length = SHEX_DEFAULT_LENGTH)** idem, default 16 bytes per line, forced multiple of 4, max SHEX_MAX_LENGTH = 32.
+- **void setBytesPerLine(uint8_t length = SHEX_DEFAULT_LENGTH)** idem, default 16 bytes per line, 
+forced multiple of 4, max SHEX_MAX_LENGTH = 32.
 - **uint8_t getBytesPerLine()** returns number of bytes per line.
 - **void setSeparator(char c = ' ')** set the separator character, default a space.
 Some people like a dot '.', or a tab '\t'. Feel free to experiment.
 - **char getSeparator()** return the separator character set.
-- **void setCountDigits(uint8_t digits)** set the length of the counter, 8 or 6 or 4 (default). Other numbers will be rounded up to 4, 6 or 8.
+- **void setCountDigits(uint8_t digits)** set the length of the counter, 8 or 6 or 4 (default). 
+Other numbers will be rounded up to 4, 6 or 8.
 - **uint8_t getCountDigits()** returns idem.
 - **void setVTAB(uint8_t vtab = SHEX_DEFAULT_VTAB)** set the vertical separator line. 
 - **uint8_t getVTAB()** return the current vertical separator line.

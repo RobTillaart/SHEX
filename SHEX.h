@@ -43,6 +43,9 @@ public:
   void    setCountDigits(uint8_t digits = SHEX_COUNTER_DIGITS);
   uint8_t getCountDigits() { return _digits; }
 
+  void    setVTAB(uint8_t vtab = SHEX_DEFAULT_VTAB);
+  uint8_t getVTAB() { return _vtab; };
+
 
 protected:
   Print *   _stream    = &Serial;

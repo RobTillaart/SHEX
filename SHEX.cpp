@@ -204,5 +204,14 @@ size_t SHEXA::write(uint8_t c)
 }
 
 
+void SHEX::setVTAB(uint8_t vtab)
+{
+  _vtab = vtab;
+  _charCount = 0;
+  //  prevent change in middle of line
+  _stream->println();
+};
+
+
 // -- END OF FILE --
 
