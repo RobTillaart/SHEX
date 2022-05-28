@@ -26,25 +26,28 @@ class SHEX: public Print
 public:
   SHEX(Print* stream = &Serial, uint8_t length = SHEX_DEFAULT_LENGTH);
 
-  void    reset();
+  void     reset();
 
-  size_t  write(uint8_t c);
+  size_t   write(uint8_t c);
 
-  void    setHEX(bool hexOutput = true);
-  bool    getHEX() { return _hexOutput; };
+  void     setHEX(bool hexOutput = true);
+  bool     getHEX() { return _hexOutput; };
 
-  void    setBytesPerLine(const uint8_t length = SHEX_DEFAULT_LENGTH);
-  uint8_t getBytesPerLine() { return _length; };
+  void     setBytesPerLine(const uint8_t length = SHEX_DEFAULT_LENGTH);
+  uint8_t  getBytesPerLine() { return _length; };
 
-  void    setSeparator(char c = ' ') { _separator = c; };
-  char    getSeparator() { return _separator; };
+  void     setSeparator(char c = ' ') { _separator = c; };
+  char     getSeparator() { return _separator; };
 
-  //      must be 0, 4, 6 or 8
-  void    setCountDigits(uint8_t digits = SHEX_COUNTER_DIGITS);
-  uint8_t getCountDigits() { return _digits; }
+  //       must be 0, 4, 6 or 8
+  void     setCountDigits(uint8_t digits = SHEX_COUNTER_DIGITS);
+  uint8_t  getCountDigits() { return _digits; }
+  //  restarts the output - use with care
+  void     restartOutput();
+  uint32_t getCounter() { return _charCount; };
 
-  void    setVTAB(uint8_t vtab = SHEX_DEFAULT_VTAB);
-  uint8_t getVTAB() { return _vtab; };
+  void     setVTAB(uint8_t vtab = SHEX_DEFAULT_VTAB);
+  uint8_t  getVTAB() { return _vtab; };
 
 
 protected:

@@ -15,10 +15,15 @@
 //                      add defines SHEX_DEFAULT_LENGTH + SHEX_MAX_LENGTH
 //  0.2.3   2022-05-28  add setVTAB(vtab) getVTAB()
 //                      add define SHEX_DEFAULT_VTAB
-//  0.3.0   2022-05-28  breaking!  default HEX output instead of pass through.
-//                      add get / setCountDigits() => #digits of count 4, 6 or 8 (4 = default)
+//  0.3.0   2022-05-28  breaking!  
+//                      change default HEX output instead of pass through.
+//                      add get / setCountDigits() => 
+//                          #digits of count 4, 6 or 8 (4 = default)
 //                      replaces get / setCounterFlag()
 //                      add define SHEX_COUNTER_DIGITS + SHEX_MIN_LENGTH
+//                      add restartOutput() and getCounter()
+//                      add SHEXA class for ASCII column output
+//                      add SHEXA::flushASCII().
 
 
 #include "SHEX.h"
@@ -104,9 +109,7 @@ size_t SHEX::write(uint8_t c)
 void SHEX::setHEX(bool hexOutput)
 {
   _hexOutput = hexOutput;
-  _charCount = 0;
-  //  prevent change in middle of line
-  _stream->println();
+  restartOutput();
 };
 
 
@@ -122,18 +125,14 @@ void SHEX::setBytesPerLine(const uint8_t length)
   {
     _length = SHEX_MIN_LENGTH;
   }
-  _charCount = 0;
-  //  prevent change in middle of line
-  _stream->println();
+  restartOutput();
 }
 
 
 void SHEX::setVTAB(uint8_t vtab)
 {
   _vtab = vtab;
-  _charCount = 0;
-  //  prevent change in middle of line
-  _stream->println();
+  restartOutput();
 };
 
 
@@ -143,7 +142,16 @@ void SHEX::setCountDigits(uint8_t digits)
   if (_digits == 0) return;
   if (_digits < 4) _digits = 4;
   if (_digits > 8) _digits = 8;
+  restartOutput();
 };
+
+
+void SHEX::restartOutput()
+{
+  //  prevent change in middle of line
+  _charCount = 0;
+  _stream->println();
+}
 
 
 ///////////////////////////////////////////////////
@@ -207,9 +215,12 @@ size_t SHEXA::write(uint8_t c)
 
 void SHEXA::flushASCII()
 {
-  for (uint8_t i = 0; i < _length; i++)
+  int len = _charCount % _length;
+  if (len == 0) len = _length;
+  //  else  print about (_length - len) * 3 of spaces ...
+  for (uint8_t i = 0; i < len;)
   {
-    _stream->write(_txtbuf[i]);
+    _stream->write(_txtbuf[i++]);
     if ((i % 8) == 0)_stream->print("  ");
   }
 }
