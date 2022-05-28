@@ -210,7 +210,7 @@ void SHEXA::flushASCII()
   for (uint8_t i = 0; i < _length; i++)
   {
     _stream->write(_txtbuf[i]);
-    if ((i % 8) == 0)_stream->write(' ');
+    if ((i % 8) == 0)_stream->print("  ");
   }
 }
 
