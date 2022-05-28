@@ -13,10 +13,11 @@
 //  0.2.1   2021-12-28  update library.json, readme, license, minor edits
 //  0.2.2   2022-05-27  fix #6 set default length
 //                      add defines SHEX_DEFAULT_LENGTH + SHEX_MAX_LENGTH
-//  0.2.3   2022-5-28   add setVTAB(vtab) getVTAB()
+//  0.2.3   2022-05-28  add setVTAB(vtab) getVTAB()
 //                      add define SHEX_DEFAULT_VTAB
-//  0.3.0   2022-05-27  default HEX output instead of pass through.
-//                      add setCountDigits() => #digits of count 4, 6 or 8 (4 = default)
+//  0.3.0   2022-05-28  breaking!  default HEX output instead of pass through.
+//                      add get / setCountDigits() => #digits of count 4, 6 or 8 (4 = default)
+//                      replaces get / setCounterFlag()
 //                      add define SHEX_COUNTER_DIGITS + SHEX_MIN_LENGTH
 
 
@@ -163,9 +164,9 @@ size_t SHEXA::write(uint8_t c)
   //  handle end of line and position number
   if ((_charCount % _length) == 0)
   {
-    //  insert ASCII array here
-    _stream->write(_txtbuf, _length);
-    
+    //  printable ASCII column
+    if (_charCount != 0) flushASCII();
+
     _stream->println();
     //  separator line every _vtab (default 8) lines
     if ((_charCount % (_length * _vtab)) == 0)
@@ -204,14 +205,14 @@ size_t SHEXA::write(uint8_t c)
 }
 
 
-void SHEX::setVTAB(uint8_t vtab)
+void SHEXA::flushASCII()
 {
-  _vtab = vtab;
-  _charCount = 0;
-  //  prevent change in middle of line
-  _stream->println();
-};
-
+  for (uint8_t i = 0; i < _length; i++)
+  {
+    _stream->write(_txtbuf[i]);
+    if ((i % 8) == 0)_stream->write(' ');
+  }
+}
 
 // -- END OF FILE --
 

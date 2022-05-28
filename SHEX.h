@@ -70,6 +70,9 @@ public:
   SHEXA(Print* stream = &Serial, uint8_t length = SHEX_DEFAULT_LENGTH);
 
   size_t    write(uint8_t c);
+  //  flushes the ASCII column to output;  not ideal but workable for now.
+  //  use with care
+  void      flushASCII();
 
 protected:
   uint8_t   _txtbuf[SHEX_MAX_LENGTH];
