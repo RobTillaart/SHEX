@@ -122,7 +122,7 @@ unittest(test_vtab)
   for (uint8_t vtab = 1; vtab < 9; vtab *= 2 )
   {
     shex.setVTAB(vtab);
-    assertEqual(vtab, shex.getVYAB());
+    assertEqual(vtab, shex.getVTAB());
   }
 }
 
