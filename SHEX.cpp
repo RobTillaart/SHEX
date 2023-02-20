@@ -122,7 +122,7 @@ uint8_t SHEX::getBytesPerLine()
 }
 
 
-void SHEX::setSeparator(char c = ' ')
+void SHEX::setSeparator(char c)
 {
   _separator = c;
 }
@@ -248,7 +248,6 @@ void SHEXA::flushASCII()
   }
   if (len < _length)
   {
-    //  merge in one loop
     for (uint8_t i = len; i < _length; i++)
     {
       _stream->print("   ");
