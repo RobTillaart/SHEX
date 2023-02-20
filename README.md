@@ -26,12 +26,13 @@ ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx
 
 ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx 
 ```
+
 with a separator line after each 8th line.
 
 The constructor has a length parameter which can be used to have another number of bytes per row.
 This can be changed with **setBytesPerLine()**.
 
-One can toggle is HEX output or pass through by means of **setHEX(bool)**.
+One can toggle HEX output or pass through by means of **setHEX(bool)**.
 This makes it possible to switch between the modes e.g. between 'debugging' and 'release' mode.
 
 One can toggle the character count at the start of the line.
@@ -39,7 +40,7 @@ One can toggle the character count at the start of the line.
 
 ### SHEXA
 
-**SHEXA** (Serial HEX Ascii) is a derived class from **SHEX** that also 
+**SHEXA** (Serial HEX ASCII) is a derived class from **SHEX** that also 
 displays a column with printable characters.
 
 
@@ -49,17 +50,21 @@ ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx  abcdefgh ijklmnop
 ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx  abcdefgh ijklmnop
 ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx  abcdefgh ijklmnop
 
-ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx 
+ABCD  xx xx xx xx  xx xx xx xx  xx xx xx xx  xx xx xx xx  etc
 ```
 
 To print this ASCII column extra RAM and code is used. 
 Therefore this is made a derived class from **SHEX**.
 
 Furthermore **SHEXA** has a function **flushASCII()** to flush the ASCII column to output.
-This is might be needed when HEX output is restarted.
+This is needed when HEX output is restarted.
 
 
 ## Interface
+
+```cpp
+#include "SHEX.h"
+```
 
 The **SHEX** and **SHEXA** share most of their interface.
 
@@ -133,12 +138,15 @@ See examples.
 Although no follow up release is planned, some ideas are kept here
 so they won't get lost.
 
+
 #### Must
+
 - optimize code
   - print vs write
 
 
-#### should
+#### Should
+
 - more testing
   - performance measurement
   - different platforms. 
@@ -146,13 +154,15 @@ so they won't get lost.
 
 
 #### Could
-- investigate **flushASCII()** for better solutions.
+
+- investigate **flushASCII()** performance.
 - HEX reader: **RHEX** converts dump format to a normal stream again.
   - separate library.
 - void setSeparatorInterval()  ??
 
 
 #### Wont
+
 - line buffering for faster output (e.g Ethernet and SD card)
   could it support **write(array, length)** call.
   needs quite a rewrite..
