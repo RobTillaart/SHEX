@@ -72,11 +72,13 @@ The **SHEX** and **SHEXA** share most of their interface.
 
 To be adjusted via command line (or in SHEX.h file)
 
-- **SHEX_DEFAULT_LENGTH  16**
-- **SHEX_MAX_LENGTH      32**
-- **SHEX_MIN_LENGTH       4**
-- **SHEX_COUNTER_DIGITS   4**
-- **SHEX_DEFAULT_VTAB     8**
+|  define               |  value  |
+|:----------------------|--------:|
+|  SHEX_DEFAULT_LENGTH  |     16  |
+|  SHEX_MAX_LENGTH      |     32  |
+|  SHEX_MIN_LENGTH      |      4  |
+|  SHEX_COUNTER_DIGITS  |      4  |
+|  SHEX_DEFAULT_VTAB    |      8  |
 
 
 ### Constructor + Core
