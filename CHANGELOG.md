@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
 ## [0.3.2] - 2023-02-20
-- fix **floshASCII()**
+- fix **flushASCII()**
 - fix LIB version number.
 - fix command line defines.
 - move code from .h to .cpp

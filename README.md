@@ -137,31 +137,28 @@ See examples.
 
 ## Future
 
-Although no follow up release is planned, some ideas are kept here
-so they won't get lost.
-
 
 #### Must
 
-- optimize code
-  - print vs write
-
+- documentation
 
 #### Should
 
+- optimize code
+  - print vs write
 - more testing
   - performance measurement
   - different platforms. 
   - different streams incl SW Serial
 
-
 #### Could
 
 - investigate **flushASCII()** performance.
-- HEX reader: **RHEX** converts dump format to a normal stream again.
+- HEX reader: **RHEX** 
+  - converts dump format to a binary or ASCII stream.
   - separate library.
-- void setSeparatorInterval()  ??
-
+- **void setSeparatorInterval()**
+- add examples
 
 #### Wont
 
